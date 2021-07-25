@@ -10,9 +10,12 @@ class VideoController extends Controller {
     ctx.validate({
         title: { type: "string" },
         description: { type: "string" },
-        vodVideoId: { type: "string" },
-        cover: { type: "string" },
+        vodVideoId: { type: "string" }
+        // cover: { type: "string" },
     })
+
+    // 默认视频封面
+    body.cover = 'http://outin-032ce1a0e9fe11eb821700163e1c955c.oss-cn-shanghai.aliyuncs.com/4705d31d247b4e9d870b39fdb9dcf05f/snapshots/60f6a730b603490bb36eda354232353c-00001.jpg?Expires=1627230355&OSSAccessKeyId=LTAI4FfD63zoqnm6ckiBFfXZ&Signature=ffQSxlQcMfOU94nQ9JvEdkyQyuA%3D'
     body.user = this.ctx.user._id
     const video = await new Video(body).save()
     this.ctx.status = 201

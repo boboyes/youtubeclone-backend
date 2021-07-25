@@ -13,10 +13,26 @@ class UserController extends Controller {
         password: { type: 'string'}
     })
     if (await service.user.findByUsername(body.username)) {
-        ctx.throw(422, '用户已存在')
+        ctx.throw(422, 'Validation Failed', {
+            errors: [
+              {
+                code: 'invalid',
+                field: 'username',
+                message: 'has already exists'
+              }
+            ]
+        })
     }
     if (await service.user.findByEmail(body.email)) {
-        ctx.throw(422, '邮箱已存在')
+        ctx.throw(422, 'Validation Failed', {
+            errors: [
+              {
+                code: 'invalid',
+                field: 'email',
+                message: 'has already exists'
+              }
+            ]
+        })
     }
 
     //2. 保存用户
@@ -49,11 +65,27 @@ class UserController extends Controller {
       //2. 校验邮箱
       const user = await service.user.findByEmail(body.email)
     if (!user) {
-        ctx.throw(422, '用户不存在')
+        ctx.throw(422, 'Validation Failed', {
+            errors: [
+              {
+                code: 'invalid',
+                field: 'email',
+                message: 'not exists'
+              }
+            ]
+          })
     }
       //3. 校验密码
     if (this.ctx.helper.md5(body.password) !== user.password) {
-        ctx.throw(422, '密码不正确')
+        ctx.throw(422, 'Validation Failed', {
+            errors: [
+              {
+                code: 'invalid',
+                field: 'password',
+                message: 'incorrect'
+              }
+            ]
+          })
     }
       //. token
     const token = service.user.createToken({

@@ -20,6 +20,17 @@ class VodController extends Controller {
 
     this.ctx.body = await this.app.vodClient.request("RefreshUploadVideo", query, {})
   }
+  async getVideoPlayAuth () {
+    const query = this.ctx.query
+    this.ctx.validate(
+      {
+        VideoId: { type: 'string' }
+      },
+      query
+    )
+
+    this.ctx.body = await this.app.vodClient.request('GetVideoPlayAuth', query, {})
+  }
 }
 
 module.exports = VodController;
