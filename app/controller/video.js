@@ -283,7 +283,7 @@ class VideoController extends Controller {
     const userId = this.ctx.user._id;
     const video = await Video.findById(videoId);
 
-    if (!video) thic.ctx.throw(404, 'Video Not Found');
+    if (!video) this.ctx.throw(404, 'Video Not Found');
 
     const doc = await VideoLike.findOne({ user: userId, video: videoId });
 
@@ -330,7 +330,7 @@ class VideoController extends Controller {
     const userId = this.ctx.user._id;
     const video = await Video.findById(videoId);
 
-    if (!video) thic.ctx.throw(404, `No video found for ID - ${videoId}`);
+    if (!video) this.ctx.throw(404, `No video found for ID - ${videoId}`);
 
     const doc = await VideoLike.findOne({ user: userId, video: videoId });
 
