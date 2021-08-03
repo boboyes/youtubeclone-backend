@@ -17,7 +17,7 @@ module.exports = appInfo => {
 
   // add your middleware config here
   config.middleware = [
-    'errorHandler'
+    'errorHandler',
   ];
 
   // add your user config here
@@ -29,7 +29,7 @@ module.exports = appInfo => {
     client: {
       url: 'mongodb://127.0.0.1/youtube-clone',
       options: {
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
       },
       // mongoose global plugins, expected a function or an array of function and options
       plugins: [],
@@ -49,12 +49,12 @@ module.exports = appInfo => {
 
   config.jwt = {
     secret: 'f29c30e4-9017-4dd5-a039-4c3b7914c245',
-    expiresIn: '1d'
-  }
+    expiresIn: '1d',
+  };
 
   config.cors = {
-    origin: "*"
-  }
+    origin: '*',
+  };
 
   return {
     ...config,
