@@ -32,6 +32,6 @@ class VodController extends Controller {
     this.ctx.body = await this.app.vodClient.request('GetVideoPlayAuth', query, {});
   }
 }
-
+// 写个注释
 module.exports = VodController;
 
